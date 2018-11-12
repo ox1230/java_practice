@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="int" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="long"/>
+			<item value="Long"/>
+			<item value="&#x09;static int Answer;"/>
+			<item value="SMax"/>
+		</list>
+		<list key="replacehistory">
+			<item value="int"/>
+			<item value="Integer"/>
+			<item value="maxR"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="364" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|8.861539|0|WINDOWS|1|-16|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="468" key="DIALOG_HEIGHT"/>
+		<item value="604" key="DIALOG_X_ORIGIN"/>
+		<item value="210" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

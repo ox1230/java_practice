@@ -1,0 +1,127 @@
+package codeground;
+/*
+You should use the statndard input/output
+
+in order to receive a score properly.
+
+Do not use file input and output
+
+Please be very careful. 
+*/
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
+
+/*
+   As the name of the class should be Solution , using Solution.java as the filename is recommended.
+   In any case, you can execute your program by running 'java Solution' command.
+ */
+class Cprac_3Nplus1 {
+	static int Answer;
+	static int Ks[];  // k들을 저장한다.
+	
+	static HashMap<Integer,ArrayList<Integer>> S = new HashMap<>(); // <k, {}>  : k번에 1에 도달하는 것들의 모임
+	static HashSet<Integer> already = new HashSet<>();// 숫자 n이 이미 한것인지 체크                      
+	
+	// N이 k번째 만에 가능하면 2N , (N-1)/3은 k+1번쨰 부터 가능하다는 점을 이용
+	// k=0부터 k를 증가시키면서 가능한 N확인
+	
+	
+	
+	public static void main(String args[]) throws Exception	{
+		/*
+		   The method below means that the program will read from input.txt, instead of standard(keyboard) input.
+		   To test your program, you may save input data in input.txt file,
+		   and call below method to read from the file when using nextInt() method.
+		   You may remove the comment symbols(//) in the below statement and use it.
+		   But before submission, you must remove the freopen function or rewrite comment symbols(//).
+		 */		
+
+		/*
+		   Make new scanner from standard input System.in, and read data.
+		 */
+		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(new FileInputStream("input.txt"));
+
+		int T = sc.nextInt();
+		Ks = new int[T];
+		int kMax = 0; // k중 가장 큰값
+		
+		for(int t=0; t<T;t++){
+			Ks[t] = sc.nextInt();
+			kMax = kMax  > Ks[t]? kMax: Ks[t];
+		}
+		
+		//일단 Integer급만 처리해본다
+		if( kMax > 31){
+			kMax = 30;
+		}
+		
+		// initialization
+		ArrayList<Integer> t = new ArrayList<>();
+		t.add(1);
+		S.put(0, t);
+		already.add(1);
+		
+		//S채우기
+		ArrayList<Integer> t1; // g-1번 가능의 모임
+		ArrayList<Integer> t2; // g번 가능의 모임
+		
+		for(int g=1; g<=kMax ; g++){
+			t1 = S.get((g-1) );
+			t2 = new ArrayList<>();
+			
+			for(int h: t1){
+				// *2
+				int temp = h*2;
+				if(already.contains(temp)) continue;
+				else{
+					t2.add(temp);
+					already.add(temp);
+				}
+				
+				//3N+1
+				temp = h-1;
+				if(temp%3 != 0) continue;
+				else{
+					temp /= 3;
+					if(already.contains(temp)) continue;
+					
+					t2.add(temp);
+					already.add(temp);
+				}
+			}
+			
+			S.put(g, t2);
+		}
+		
+		
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			// Answer = 0;
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			
+			ArrayList<Integer> tt = S.get( Ks[test_case] );
+			
+			int m = Integer.MAX_VALUE;
+			int M = 0;
+			
+			int i;
+			for(int j= 0 ;j < tt.size(); j++){
+				i = tt.get(j);
+				m = m > i? i: m;
+				M = M > i? M: i;
+			}
+			
+			
+			
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+			// Print the answer to standard output(screen).
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(m + " " + M);}
+		}	
+}

@@ -1,0 +1,176 @@
+package codeground;
+
+import java.util.Scanner;
+
+/*
+   As the name of the class should be Solution , using Solution.java as the filename is recommended.
+   In any case, you can execute your program by running 'java Solution' command.
+ */
+class SPPC_1_전광판 {
+	static String Answer;
+	static int[][] G;// 전광판
+
+	static int N;
+	static int M;
+
+	public static void main(String args[]) throws Exception	{
+		/*
+		   The method below means that the program will read from input.txt, instead of standard(keyboard) input.
+		   To test your program, you may save input data in input.txt file,
+		   and call below method to read from the file when using nextInt() method.
+		   You may remove the comment symbols(//) in the below statement and use it.
+		   But before submission, you must remove the freopen function or rewrite comment symbols(//).
+		 */		
+
+		/*
+		   Make new scanner from standard input System.in, and read data.
+		 */
+		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(new FileInputStream("input.txt"));
+		/*
+		 * 1. 1행에 있는 스위치의 모든 경우의 수에 대해
+		 * 	   2. 각 col스위치를 조정해 준다.
+		 * 			3. 조정된 col 스위치에 대해 2행 이후의 row별로 정답이 가능
+		 */
+		int T = sc.nextInt();
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			// Answer = 0;
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			N = sc.nextInt();
+			M = sc.nextInt();
+			G = new int[N][M];
+
+			int on;
+			int row;
+			int col;
+			int[] rowSwit = new int[N];
+			int[] colSwit = new int[M];
+
+			boolean pass = false;
+			boolean case2 = false;
+			// 일단 case1만
+			for(int i=0;i<N;i++)for(int j=0;j<M;j++){
+				on = sc.nextInt();
+				row = sc.nextInt();
+				col = sc.nextInt();
+
+				if(row + col >0) pass = true;
+
+				G[i][j] = on;
+			}
+
+
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+			//일단 case1만 
+			if(pass){
+				Answer = "Impossible";
+			}
+			else{
+				rowSwit = new int[N];
+				colSwit = new int[M];
+
+				//case1
+				rowSwit[0] = 0;
+
+				//각 colSwit을 맞춰준다.
+				for(int j=0;j<M;j++){
+					colSwit[j] = G[0][j] == 0 ? 1 : 0;
+					//전구, row스위치 꺼졌으면
+				}
+
+				boolean canDo = false;
+				for(int i=1;i<N;i++){
+					canDo = testOneRow(i,rowSwit,colSwit);
+					if(canDo == false) break;
+				}
+
+				if(canDo){ // 정답 당첨
+					Answer = createAnswer(rowSwit,colSwit);
+				}
+				else{ // 정답 아님
+					//case2 
+					rowSwit = new int[N];
+					colSwit = new int[M];
+					rowSwit[0] = 1;
+
+
+					//각 colSwit을 맞춰준다.
+					for(int j=0;j<M;j++){
+						colSwit[j] = (1 + G[0][j])%2 == 0 ? 1 : 0;
+						//전구, row스위치가 둘다 켜졌으면
+					}
+
+					canDo = false;
+					for(int i=1;i<N;i++){
+						canDo = testOneRow(i,rowSwit,colSwit);
+						if(canDo == false) break;
+					}
+
+				}
+				if(canDo == false) Answer = "Impossible";
+				else Answer = createAnswer(rowSwit,colSwit);
+
+			}
+
+
+			// Print the answer to standard output(screen).
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(Answer);
+		}
+	}
+
+	private static String createAnswer(int[] rowSwit, int[] colSwit) {
+		StringBuffer ret = new StringBuffer();
+		
+		for(int j=0;j<M;j++){
+			if(colSwit[j] == 1){
+				ret.append('C');
+				if(j<10) ret.append('0');
+				ret.append(j+"00 ");
+			}
+		}
+		
+		for(int i=0;i<N;i++){
+			if(rowSwit[i] == 1){
+				ret.append('R');
+				if(i<10) ret.append('0');
+				ret.append(i+"00 ");
+			}
+		}
+		
+		ret.deleteCharAt(ret.length()-1);
+		return ret.toString();
+	}
+
+	private static boolean testOneRow(int i, int[] rowSwit, int[] colSwit) {
+		//case 1 
+		boolean ret  = true;
+		rowSwit[i] = 0;
+
+		for(int j=0;j<M;j++){
+			if((0 + colSwit[j] + G[i][j]) %2 == 1);   // 최종 전구: 켜짐
+			else{
+				ret = false;
+				break;
+			}
+		}
+
+
+		if(ret == true){} // 
+		else{ //case2
+			rowSwit[i] = 1;
+			ret = true;
+			for(int j=0;j<M;j++){
+				if((1 + colSwit[j] + G[i][j]) %2 == 1);   // 최종 전구: 켜짐
+				else{
+					ret = false;
+					break;
+				}
+			}
+		}
+		
+		return ret;
+	}
+}

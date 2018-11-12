@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4"/>
+		<item value="C:\Users\ox112\OneDrive\진로탐색\활동내역\2018겨울방학 빅데이터_자판기\vending"/>
+		<item value="C:\Users\ox112\OneDrive\진로탐색\활동내역\2018겨울방학 빅데이터_자판기.zip"/>
+		<item value="C:\Users\ox112\Desktop\2018겨울방학 빅데이터 관련 자료들 (2)\vending"/>
+		<item value="C:\Users\ox112\Desktop\2018겨울방학 빅데이터 관련 자료들\Day17"/>
+		<item value="D:\Big Data\백업\java_workspace\baek"/>
+		<item value="C:\Users\ox112\OneDrive\java"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+			<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4\practice4_20130110-0.zip"/>
+			<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4\practice4_20111323-0.zip"/>
+			<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4.zip"/>
+			<item value="C:\Users\ox112\OneDrive\바탕 화면\[2018-2학기-기초Java언어-02]실습4\project4_20160414-0.zip"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|맑은 고딕|8.861539|0|WINDOWS|1|-16|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="188" key="DIALOG_X_ORIGIN"/>
+			<item value="184" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

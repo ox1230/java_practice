@@ -1,0 +1,153 @@
+package codeground;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+/*
+   As the name of the class should be Solution , using Solution.java as the filename is recommended.
+   In any case, you can execute your program by running 'java Solution' command.
+ */
+class SPPC_1_Convernent {
+	static int Answer;
+
+	static int N;
+	static int M;
+
+	static HashMap<Integer,Integer>[] tree;
+	static HashSet<Integer> diameter;
+
+
+	public static void main(String args[]) throws Exception	{
+		/*
+		   The method below means that the program will read from input.txt, instead of standard(keyboard) input.
+		   To test your program, you may save input data in input.txt file,
+		   and call below method to read from the file when using nextInt() method.
+		   You may remove the comment symbols(//) in the below statement and use it.
+		   But before submission, you must remove the freopen function or rewrite comment symbols(//).
+		 */		
+
+		/*
+		   Make new scanner from standard input System.in, and read data.
+		 */
+		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(new FileInputStream("input.txt"));
+
+		int T = sc.nextInt();
+		for(int test_case = 0; test_case < T; test_case++) {
+
+			// Answer = 0;
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+			N = sc.nextInt();
+			M = sc.nextInt();
+
+			int fr, to;
+			int c;
+
+			tree = new HashMap[M+1];
+
+			for(int i=1;i<=M;i++){
+				tree[i] = new HashMap<>();
+			}
+
+			for(int i=0;i<M;i++){
+				fr =sc.nextInt();
+				to =sc.nextInt();
+				c = sc.nextInt();
+
+				tree[fr].put(to, c);
+				tree[to].put(fr, c);
+			}
+
+			// 1.트리의 지름을 구한다  (n1, n2선정)
+
+			//노드 1에서 길이가 가장 긴 n1을 잦는다.
+			Queue<long[]> save = new LinkedList<>();  //{노드, 길이}
+			long max = 0; 
+			int n1 = 1; // 트리의 지름의 양끝
+			int n2;
+			long[] t;
+			save.add(new long[]{1,0});
+
+
+			while(!save.isEmpty()){
+				t = save.poll();
+
+				Iterator<Entry<Integer,Integer>> iter = tree[(int)t[0]].entrySet().iterator();
+				Entry<Integer,Integer> temp;
+
+				while(iter.hasNext()){
+					temp = iter.next();						
+					int next = temp.getKey(); 
+					long dis = temp.getValue() + t[1];
+
+					if(next <= 2*N){  // leaf도착
+						if(dis > max){
+							max = dis;
+							n1 = next;
+						}
+					}
+					else{ // 중간 노드
+						save.add(new long[]{next,dis});
+					}
+				}
+			}
+			// n1에서 거리가 가장 긴 노드를 구한다.
+			HashSet<Integer> tt;
+			tt = new HashSet<Integer>();
+			tt.add(n1);
+
+			n2 = findN2(n1, tt,0 ,0 , n1);
+			
+			
+
+
+			//각 n에서 지름까지의 길이를 구한다
+
+			// 가장 길이가 긴 상위 n-2개를 선택한다.
+
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+			// Print the answer to standard output(screen).
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(n1 + " " + n2);
+		}
+	}
+
+
+	private static int findN2(int now, HashSet<Integer> tt ,long dis, long max, int n2) {
+		// TODO Auto-generated method stub
+		Iterator<Entry<Integer,Integer>> iter = tree[now].entrySet().iterator();
+		Entry<Integer,Integer> temp;
+
+
+		while(iter.hasNext()){
+			temp = iter.next();
+
+			if(tt.contains(temp.getKey())) continue; // 이미 지나온 길
+
+			if(temp.getKey() <= 2*N){
+				// leaf도착
+				if(dis + temp.getValue() > max){  // 새로운 n2탄생
+					n2 = temp.getKey();
+					max = dis + temp.getValue();
+					diameter = new HashSet<Integer>(tt);
+				}
+				// 아니면 pass
+			}
+			else{  // 중간 노드라면
+				tt.add(temp.getKey());
+				n2  = findN2(temp.getKey(), tt , dis+ temp.getValue(), max, n2);
+				tt.remove(temp.getKey());
+			}
+		}
+		return n2;
+	}
+}

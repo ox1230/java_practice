@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;i&apos; in &apos;baekjoon.Topni.moveTo(...)&apos; to &apos;target&apos;&#x0D;&#x0A;- Original project: &apos;ja&apos;&#x0D;&#x0A;- Original element: &apos;baekjoon.Topni.moveTo(int, int).i&apos;&#x0D;&#x0A;- Renamed element: &apos;i&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;i&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;baekjoon{B14891_톱니바퀴.java[Topni~moveTo~I~I@i!917!933!921!921!I!0!false" name="target" references="true" stamp="1527053097160" version="1.0"/>
+</session>

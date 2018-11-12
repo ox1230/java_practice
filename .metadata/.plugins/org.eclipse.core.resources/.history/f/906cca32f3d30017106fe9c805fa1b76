@@ -1,0 +1,22 @@
+package baekjoon;
+
+import java.io.IOException;
+
+public class B01309_µ¿¹°¿ø {
+
+	static int N;
+	
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		Reader r = new Reader();
+		N = r.nextInt();
+	}
+	
+	static int solve(){
+		long ret = 0;
+		
+		
+		
+		return ret % 9901;
+	}
+}

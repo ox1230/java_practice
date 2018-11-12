@@ -1,0 +1,96 @@
+package codeground;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+/*
+   As the name of the class should be Solution , using Solution.java as the filename is recommended.
+   In any case, you can execute your program by running 'java Solution' command.
+ */
+class SPPC_1_괄호 {
+	static int Answer;
+
+	public static void main(String args[]) throws Exception	{
+		/*
+		   The method below means that the program will read from input.txt, instead of standard(keyboard) input.
+		   To test your program, you may save input data in input.txt file,
+		   and call below method to read from the file when using nextInt() method.
+		   You may remove the comment symbols(//) in the below statement and use it.
+		   But before submission, you must remove the freopen function or rewrite comment symbols(//).
+		 */		
+
+		/*
+		   Make new scanner from standard input System.in, and read data.
+		 */
+		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(new FileInputStream("input.txt"));
+		
+		String S;  // 문자열 저장
+		int N; // S의 길이
+		Stack<Character> save = new Stack<>(); // 괄호들을 저장한다.
+		
+		int T = Integer.valueOf(sc.nextLine());
+		
+		for(int test_case = 0; test_case < T; test_case++) {
+			
+			// Answer = 0;
+			/////////////////////////////////////////////////////////////////////////////////////////////
+			
+			S = sc.nextLine();
+			save.clear();
+			N = S.length();
+			int maxCnt = 0; // 가장 긴 올바른 괄호의 길이
+			int cnt = 0;  // 현재 올바른 괄호의 길이
+			char t;
+			//init 종료
+			
+			
+			//여는 괄호는 stack에 넣는다. 
+			// 닫는 괄호가 나오면 stack의 괄호와 비교한다. 두 괄호가 맞지 않으면, 옳지 않은 괄호이다.
+			boolean reset;  // 올바른 괄호가 끝났음
+			
+			for(int i=0;i<N;i++){
+				t = S.charAt(i);
+				reset = false;
+				
+				switch (t){
+					case '(': ; 
+					case '{': ;
+					case '[': save.push(t); break;
+					case '}': {
+						if( !save.isEmpty() && save.pop() == '{') cnt+= 2;   // 제대로 닫혀야 올바른 괄호
+						else reset = true;
+						break;
+					}
+					case ')': {
+						if(!save.isEmpty() && save.pop() == '(') cnt+= 2;
+						else reset = true;
+						break;
+					}
+					case ']': {
+						if(!save.isEmpty() && save.pop() == '[') cnt+= 2;
+						else reset = true;
+						break;
+					}
+					case ' ': cnt++; break;
+					default: break;
+				}
+				
+				if(reset){
+					if(cnt > maxCnt) maxCnt = cnt;
+					save.clear();
+					cnt = 0;
+				}
+			}
+			
+			if(cnt > maxCnt) maxCnt = cnt;
+			Answer = maxCnt;
+			/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+			// Print the answer to standard output(screen).
+			System.out.println("Case #"+(test_case+1));
+			System.out.println(Answer);
+		}
+	}
+}

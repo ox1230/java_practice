@@ -1,0 +1,53 @@
+package practice2;
+
+class Rectangle 
+{
+	private int width;
+	private int height;
+	
+	Rectangle()
+	{
+		width = 0;
+		height = 0;
+	}
+	Rectangle(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
+	
+	void setWidthHeight(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
+	
+	void printInfo()
+	{
+		System.out.println("width : "+width+", height : "+height);
+	}
+	
+	void incWidth(int x) { width += x; }
+	void incHeight(int x) {height += x;}
+	
+	int getArea() { return width*height; }
+	int getPerimeter() { return 2*(width+height); }
+	
+}
+
+
+public class P2_20131811_1 
+{
+	public static void main(String[] args) 
+	{
+		Rectangle r1 = new Rectangle(5,6);
+		Rectangle r2 = new Rectangle();
+		r2.setWidthHeight(7,9); // 인스턴스 r2의 필드 width를 7로, height를 9로 저장한다. 
+		r1.printInfo(); // 인스턴스 r1의 width, height를 출력한다. 
+		System.out.println("r1의 넓이 : " + r1.getArea() + ", r1의 둘레 : " + r1.getPerimeter());
+		r2.incWidth(3); // r2의 width를 3 증가시킨다. 즉, 10으로 만든다. 
+		r2.incHeight(10); // r2의 height를 10만큼 증가시킨다. 즉, 19로 만든다. 
+		r2.printInfo(); // 인스턴스 r2의 width, height를 출력한다. 
+		System.out.println("r2의 넓이 : " + r2.getArea() + ", r2의 둘레 : " + r2.getPerimeter());
+	}
+}

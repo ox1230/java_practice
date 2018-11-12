@@ -1,0 +1,99 @@
+package baekjoon;
+
+import java.io.IOException;
+
+public class B02240_자두나무 {
+	public static void main(String[] args) throws IOException{
+		Tree t = new Tree();
+		
+		t.input();
+		System.out.println(t.solve());
+		
+	}
+}
+
+
+class Tree{
+	int T;
+	int W;
+	int[] fall;
+	int[][][] jadu;
+	//jadu[t][w][i]--  t초에 w번 이동했을 시 i=0:최대 자두수.  i=1: 현재 위치
+	public void input() throws IOException {
+		// TODO Auto-generated method stub
+		Reader r = new Reader();
+		T = r.nextInt();
+		W = r.nextInt();
+		
+		fall = new int[T];
+		
+		for(int i=0;i<T;i++){
+			fall[i] = r.nextInt();
+		}
+		
+	}
+	
+	int solve(){
+		jadu = new int[T][W+1][2];
+		
+		//init
+		jadu[0][0][1] = 1;
+		jadu[0][1][1] = 2;
+		
+		if(jadu[0][0][1] == fall[0]) jadu[0][0][0]++;
+		if(jadu[0][1][1] == fall[0]) jadu[0][1][0]++;
+		//
+		
+		for(int t=1;t<T;t++){
+			
+			//처음 처리(무조건 notMove)
+			jadu[t][0][0] = jadu[t-1][0][0] + fall[t]%2;
+			
+			int w=1;
+			for(;w<=W;w++){
+				if(w > t) continue; // 미지의 영역
+				
+				//이동시 자두개수
+				int move = jadu[t-1][w-1][0];
+				if(jadu[t-1][w-1][1] != fall[t]) move++; 
+				//이동x시 자두개수
+				int notMove = jadu[t-1][w][0];
+				if(jadu[t-1][w][1] == fall[t]) notMove++;
+				
+				if(move > notMove){ //이동이 더 많은 자두 획득시
+					jadu[t][w][0] = move;
+					
+					if(jadu[t-1][w-1][1] == 1) jadu[t][w][1] = 2;
+					else jadu[t][w][1] = 1;
+				}
+				else{ // notMove가 더 많은 자두 획득시
+					jadu[t][w][0] = notMove;
+					
+					if(jadu[t-1][w-1][1] == 1) jadu[t][w][1] = 1;
+					else jadu[t][w][1] = 2;
+				}
+				
+				
+			}
+			
+			if(w == t+1){ //마지막 처리(무조건 move가 크다)
+				jadu[t][w][0] = jadu[t-1][w-1][0];
+				if(jadu[t][w][1] == fall[t]) jadu[t][w][0]++;
+				
+				if(jadu[t-1][w-1][1] == 1) jadu[t][w][1] = 2;
+				else jadu[t][w][1] = 1;
+			}
+			
+		}
+	
+	
+		int ret = 0;
+		for(int w=0;w<=W;w++){
+			if(jadu[T-1][w][0] > ret) ret = jadu[T-1][w][0];
+		}
+	
+		return ret;
+	}
+	
+	
+}

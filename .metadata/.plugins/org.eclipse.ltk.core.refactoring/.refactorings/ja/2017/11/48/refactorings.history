@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;B01309_동물원.java&apos; to &apos;baekjoon.ACMcraftEx.java&apos;&#x0D;&#x0A;- Original project: &apos;ja&apos;&#x0D;&#x0A;- Destination element: &apos;baekjoon.ACMcraftEx.java&apos;&#x0D;&#x0A;- Original element: &apos;B01309_동물원.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;baekjoon{ACMcraftEx.java" element1="/src&lt;{B01309_동물원.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1511842258102" units="1" version="1.0"/>
+</session>
